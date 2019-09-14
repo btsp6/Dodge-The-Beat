@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
 
         x_default = Input.GetAxis("Horizontal");
         y_default = Input.GetAxis("Vertical");
+        gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
     }
 
     // FixedUpdate is called before each physics frame
