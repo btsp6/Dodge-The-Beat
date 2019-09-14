@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.name == "Player") {
-			Debug.Log("Dead");
+			other.gameObject.GetComponent<PlayerHealth>().BulletHit();
 		}
 	}
 }
