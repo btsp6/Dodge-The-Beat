@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 1815818108}
   - component: {fileID: 1815818112}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -292,7 +292,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815818107}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.19, y: 1.03, z: 0}
+  m_LocalPosition: {x: -1.07, y: 0.67, z: 0}
   m_LocalScale: {x: 0.5, y: 0.1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 2001323199}
   - component: {fileID: 2001323198}
   m_Layer: 0
-  m_Name: BarSpawner
+  m_Name: BarController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -357,6 +357,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b19a29d74d6bb742838bf9e322ed6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bar_prefab: {fileID: 9154433407339173815, guid: cf60a8047c6aa3942aa6e2ad6aa7c451,
+    type: 3}
+  NUMBER_OF_BARS: 10
+  RADIUS: 5
 --- !u!4 &2001323199
 Transform:
   m_ObjectHideFlags: 0
