@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BarSpawnerScript : MonoBehaviour
+public class BarControllerScript : MonoBehaviour
 {
     public GameObject bar_prefab;
     public int NUMBER_OF_BARS;
