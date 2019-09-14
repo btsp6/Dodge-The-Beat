@@ -5,8 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         
     }
 
@@ -15,8 +14,13 @@ public class Bullet : MonoBehaviour
 	}
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         
     }
+
+	private void OnTriggerEnter(Collider other) {
+		if (other.name == "Player") {
+			Debug.Log("Dead");
+		}
+	}
 }
