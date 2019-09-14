@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     public float MAX_SPEED;
     public float ACCELERATION;
@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
 
         x_default = Input.GetAxis("Horizontal");
         y_default = Input.GetAxis("Vertical");
-        gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
     }
 
     // FixedUpdate is called before each physics frame
