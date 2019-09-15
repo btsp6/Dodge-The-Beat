@@ -5,29 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-	public int MAX_HEALTH;
+	public int MAX_HEALTH, REGENERATE_TIMER;
 	public static int health;
+	private int timer;
 
     void Start() {
 		health = MAX_HEALTH;
-    	Debug.Log(health);    
+    	timer = 0;
     }
 
     void Update()
     {
-        
+        timer++;
+		if (timer % REGENERATE_TIMER == 0) Regenerate();
     }
 
 	public void BulletHit() {
 		health -= 1;
-		Debug.Log(health);
 		if (health <= 0) {
 			Dead();
 		}
 	}
 
 	private void Dead() {
-		Debug.Log("Dead");
 		SceneManager.LoadScene("GameOver");
+	}
+	
+	public void Regenerate() {
+		if (health < MAX_HEALTH) health++;
 	}
 }
