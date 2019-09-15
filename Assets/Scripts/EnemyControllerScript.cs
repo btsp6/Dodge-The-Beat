@@ -6,7 +6,7 @@ public class EnemyControllerScript : MonoBehaviour
 {
 	public GameObject enemy_prefab;
     public const int NUMBER_OF_ENEMIES = BarControllerScript.NUMBER_OF_BARS;
-	public int RADIUS;
+	public const int RADIUS = 4;
 
 	private GameObject[] enemy_list;
 
