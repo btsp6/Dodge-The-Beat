@@ -148,6 +148,11 @@ public class MusicConversionScript : MonoBehaviour
                 reducedDataCount[bar_index]++;
             }
 
+            if (!audioSource.isPlaying)
+            {
+                SceneManager.LoadScene("LevelSelect");
+            }
+
             /*var build = "";
             for (int i = 0; i < N_BARS; i++)
             {
