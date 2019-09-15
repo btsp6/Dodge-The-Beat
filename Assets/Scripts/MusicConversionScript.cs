@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
+using UnityEngine.EventSystems;
 
 public class MusicConversionScript : MonoBehaviour
 {
@@ -65,7 +66,8 @@ public class MusicConversionScript : MonoBehaviour
     {
         if (CurrentScene.name == "LevelSelect")
         {
-            AudioClip CurrentClip = Resources.Load<AudioClip>(Path.Combine(Application.streamingAssetsPath, "A Life Full Of Joy.wav")); // Replace <-const file path with file path of currently chosen mp3
+            GameObject selected_button = EventSystem.current.currentSelectedGameObject;
+            AudioClip CurrentClip = Resources.Load<AudioClip>(Path.Combine(Application.streamingAssetsPath, selected_button.name)); // Replace <-const file path with file path of currently chosen mp3
             Debug.Log(CurrentClip);
             Debug.Log(MyClip);
             if(CurrentClip != MyClip)
