@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class MusicConversionScript : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class MusicConversionScript : MonoBehaviour
 
     private Scene CurrentScene;
     private AudioClip MyClip;
+    private AudioClip ScannedClip;
+    private GameObject CurrentButton;
 
     // Used to add OnSceneLoaded to scene manager
     void OnEnable()
@@ -61,19 +65,47 @@ public class MusicConversionScript : MonoBehaviour
     {
     }
 
+    IEnumerator GetAudioClip(string path)
+    {
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.WAV))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                ScannedClip = DownloadHandlerAudioClip.GetContent(www);
+                Debug.Log(ScannedClip.name);
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (CurrentScene.name == "LevelSelect")
         {
             GameObject selected_button = EventSystem.current.currentSelectedGameObject;
-            AudioClip CurrentClip = Resources.Load<AudioClip>(Path.Combine(Application.streamingAssetsPath, selected_button.name)); // Replace <-const file path with file path of currently chosen mp3
-            Debug.Log(CurrentClip);
-            Debug.Log(MyClip);
-            if(CurrentClip != MyClip)
+            if (selected_button != CurrentButton 
+                && selected_button.GetComponentInChildren<Text>().text != null 
+                && selected_button.GetComponentInChildren<Text>().text.Contains(".wav")
+                && !selected_button.GetComponentInChildren<Text>().text.Contains(".meta")) 
+            {
+                CurrentButton = selected_button;
+                Debug.Log("selected new button");
+                string local_path = "file:///" + Application.streamingAssetsPath + "/" + selected_button.GetComponentInChildren<Text>().text;
+                StartCoroutine("GetAudioClip", local_path);
+            }
+            
+            ///Debug.Log(CurrentClip);
+            //Debug.Log(MyClip);
+            if(ScannedClip != MyClip)
             {
                 Debug.Log("uh oh");
-                MyClip = CurrentClip;
+                MyClip = ScannedClip;
                 audioSource.clip = MyClip;
                 audioSource.Play();
             }
