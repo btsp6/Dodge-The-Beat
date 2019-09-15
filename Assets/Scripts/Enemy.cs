@@ -24,8 +24,13 @@ public class Enemy : MonoBehaviour
 
 	void LateUpdate() {
 		if (timer > 0) timer--;
-		float val = MusicConversionScript.reducedData[index]*50;
-		if (val > THRESHOLD && timer == 0) {
+        float scaled_average_amplitude = 0;
+        for (int i = 0; i < NUMBER_OF_BARS; i++)
+        {
+            scaled_average_amplitude += MusicConversionScript.reducedData[i] / NUMBER_OF_BARS * BarControllerScript.SCALING_FACTOR;
+        }
+        float val = MusicConversionScript.reducedData[index]*BarControllerScript.SCALING_FACTOR;
+		if (val > Mathf.Max(THRESHOLD - 2*scaled_average_amplitude, 1) * scaled_average_amplitude && timer == 0) {
 			timer = COOLDOWN;
 			float sector = 2*Mathf.PI/NUMBER_OF_BARS;
 			float angle = index*sector + Random.Range(-sector/2, sector/2);
