@@ -5,7 +5,7 @@ using UnityEngine;
 public class BarControllerScript : MonoBehaviour
 {
     public GameObject bar_prefab;
-    public int NUMBER_OF_BARS;
+    public const int NUMBER_OF_BARS = 10;
     public float INITIAL_RADIUS;
 
     private float radius;
@@ -32,7 +32,15 @@ public class BarControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetBarHeight(0, Random.value);
+        
+    }
+
+    void LateUpdate()
+    {
+        for (int i = 0; i < NUMBER_OF_BARS; i++)
+        {
+            SetBarHeight(i, MusicConversionScript.reducedData[i]*50);
+        }
     }
 
     void SetBarHeight(int index, float size)
