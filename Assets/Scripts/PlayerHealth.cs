@@ -28,6 +28,6 @@ public class PlayerHealth : MonoBehaviour
 
 	private void Dead() {
 		Debug.Log("Dead");
-		SceneManager.LoadScene("Menu");
+		SceneManager.LoadScene("GameOver");
 	}
 }

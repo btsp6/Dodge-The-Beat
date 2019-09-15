@@ -21,9 +21,9 @@ public class PopulateGrid : MonoBehaviour
 
         for (int i=0; i< info.Length; i++){
             string fileName = info[i].Name;
-            string maybeIsMp3 = fileName.Substring(fileName.Length - 4, 4);
-            bool isMp3 = (maybeIsMp3.Equals(".mp3"));
-            if (isMp3){
+            string maybeIsWav = fileName.Substring(fileName.Length - 4, 4);
+            bool isWav = (maybeIsWav.Equals(".wav"));
+            if (isWav){
                 Debug.Log(fileName);
                 fileNames.Add(fileName);
             }
