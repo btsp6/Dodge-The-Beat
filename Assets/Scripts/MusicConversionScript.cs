@@ -44,16 +44,5 @@ public class MusicConversionScript : MonoBehaviour
             }
             reducedData[i] = sum / count;
         }
-        if(Random.value*100  <1 )
-        {
-
-            string build = "";
-            foreach (float value in fftData)
-            {
-                build += value+ " ";
-            }
-            //Debug.Log(build);
-            
-        }
     }
 }
