@@ -33,6 +33,7 @@ public class PopulateGrid : MonoBehaviour
 
 	void Populate(List<string> fileNames){
 		GameObject newButton; // Create GameObject instance
+		bool firstTime = true;
 
 		foreach (string currName in fileNames){
 			// Create new instances of our prefab until we've created as many as we specified
@@ -42,15 +43,19 @@ public class PopulateGrid : MonoBehaviour
 			newButton.GetComponentInChildren<Text>().text = currName;
 
 			// todo: make the buttons work 
-			newButton.GetComponent<Button>().onClick.AddListener( delegate {PlaceHolderScript(currName);} );
+			// newButton.GetComponent<Button>().onClick.AddListener( delegate {FilePathFetcher(currName);} );
+
+			if (firstTime){
+				newButton.GetComponent<Button>().Select();
+				firstTime = false;
+			}
 		}
 	}
 
-	void PlaceHolderScript(string fileName){
-		string myPath = Application.streamingAssetsPath;
-		string filePath = myPath + "/" + fileName;
-		Debug.Log(filePath);
-		//do something with the filePath
-
-	}
+	// string FilePathFetcher(string fileName){
+	// 	string myPath = Application.streamingAssetsPath;
+	// 	string filePath = myPath + "/" + fileName;
+	// 	Debug.Log(filePath);
+	// 	return filePath;
+	// }
 }
