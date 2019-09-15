@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
 			Destroy(gameObject);
 		}
 		// timer > 10 is extremely jank
-		else if (other.name == "Wall(Clone)" && timer > 10) {
+		else if (timer > 10 && other.name != "Bullet(Clone)") {
 			Destroy(gameObject);
 		}
 	}
