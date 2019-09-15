@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.IO;
 
 public class MusicConversionScript : MonoBehaviour
 {
@@ -13,52 +15,98 @@ public class MusicConversionScript : MonoBehaviour
     public static float[] fftData = new float[N_FFT_SAMPLES];
     public static float[] reducedData = new float[N_BARS + 1]; //+1 for bass
 
+    private Scene CurrentScene;
+    private AudioClip MyClip;
+
+    // Used to add OnSceneLoaded to scene manager
+    void OnEnable()
+    {
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    // Called when Scene is loaded
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        CurrentScene = scene;
+        if (CurrentScene.name == "Menu")
+        {
+            audioSource.Stop();
+        }
+
+        if (CurrentScene.name == "LevelSelect")
+        {
+            audioSource.Stop();
+            MyClip = null;
+        }
+        
+        if (CurrentScene.name == "Game")
+        {
+            //this.gameObject;
+            Debug.Log("FFT data buffer length: " + fftData.Length);
+            //AudioClip clip = Resources.Load<AudioClip>("Audio/A Life Full Of Joy.wma");
+            //Debug.Log(clip);
+            Debug.Log("Playing music");
+
+            audioSource.Play();
+            ToneIndices.Initialize();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        //this.gameObject;
-        Debug.Log("FFT data buffer length: " + fftData.Length);
-        audioSource = GetComponent<AudioSource>();
-        AudioClip clip = Resources.Load<AudioClip>("Audio/A Life Full Of Joy.wma");
-        Debug.Log(clip);
-
-        //audioSource.clip = clip;
-        audioSource.Play();
-        Debug.Log("Playing music");
-        ToneIndices.Initialize();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //Debug.Log("FFT data buffer length: "+fftData.Length);
-        audioSource.GetSpectrumData(fftData, 0, FFTWindow.Blackman);
-
-
-        var reducedDataCount = new int[N_BARS + 1]; //+1 for bass
-
-        for (int i = 0; i < N_BARS; i++)
+        if (CurrentScene.name == "LevelSelect")
         {
-            reducedData[i] = 0;
+            AudioClip CurrentClip = Resources.Load<AudioClip>(Path.Combine(Application.streamingAssetsPath, "A Life Full Of Joy.wav")); // Replace <-const file path with file path of currently chosen mp3
+            Debug.Log(CurrentClip);
+            Debug.Log(MyClip);
+            if(CurrentClip != MyClip)
+            {
+                Debug.Log("uh oh");
+                MyClip = CurrentClip;
+                audioSource.clip = MyClip;
+                audioSource.Play();
+            }
         }
 
-        for (int i = 0; i < N_FFT_SAMPLES; i++)
-        {
-            var bar_index = ToneIndices.indices[i];
+        if (CurrentScene.name == "Game") {
+            //Debug.Log("FFT data buffer length: "+fftData.Length);
+            audioSource.GetSpectrumData(fftData, 0, FFTWindow.Blackman);
 
-            reducedData[bar_index] += fftData[i];
 
-            reducedDataCount[bar_index]++;
+            var reducedDataCount = new int[N_BARS + 1]; //+1 for bass
+
+            for (int i = 0; i < N_BARS; i++)
+            {
+                reducedData[i] = 0;
+            }
+
+            for (int i = 0; i < N_FFT_SAMPLES; i++)
+            {
+                var bar_index = ToneIndices.indices[i];
+
+                reducedData[bar_index] += fftData[i];
+
+                reducedDataCount[bar_index]++;
+            }
+
+            /*var build = "";
+            for (int i = 0; i < N_BARS; i++)
+            {
+                reducedData[i] /= reducedDataCount[i];
+                build += reducedData[i] + " ";
+            }
+            Debug.Log(build);
+            */
         }
-
-        var build = "";
-        for (int i = 0; i < N_BARS; i++)
-        {
-            reducedData[i] /= reducedDataCount[i];
-            build += reducedData[i] + " ";
-        }
-        Debug.Log(build);
     }
 }
 

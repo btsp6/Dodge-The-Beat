@@ -14,7 +14,7 @@ public class BarControllerScript : MonoBehaviour
     public const int NUMBER_OF_BARS = 12;
     public const int NUMBER_OF_WALLS = 64;
 
-    public const float SCALING_FACTOR = 500;
+    public const float SCALING_FACTOR = 1;
 
     public float INITIAL_RADIUS;
     public float DELTA_RADIUS;
