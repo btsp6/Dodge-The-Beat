@@ -39,24 +39,41 @@ public class MusicConversionScript : MonoBehaviour
         if (CurrentScene.name == "Menu")
         {
             audioSource.Stop();
+            audioSource.pitch = 1;
         }
 
         if (CurrentScene.name == "LevelSelect")
         {
             audioSource.Stop();
+            audioSource.pitch = 1;
             MyClip = null;
         }
         
         if (CurrentScene.name == "Game")
         {
             //this.gameObject;
-            Debug.Log("FFT data buffer length: " + fftData.Length);
+            //Debug.Log("FFT data buffer length: " + fftData.Length);
             //AudioClip clip = Resources.Load<AudioClip>("Audio/A Life Full Of Joy.wma");
             //Debug.Log(clip);
-            Debug.Log("Playing music");
+            //Debug.Log("Playing music");
 
+            audioSource.pitch = 1;
             audioSource.Play();
             ToneIndices.Initialize();
+        }
+
+        if (CurrentScene.name == "GameOver")
+        {
+            StartCoroutine("StopMusic");
+        }
+    }
+
+    IEnumerator StopMusic()
+    {
+        while(audioSource.pitch > 0)
+        {
+            audioSource.pitch -= Time.deltaTime;
+            yield return new WaitForSeconds(Time.deltaTime);
         }
     }
 
@@ -104,7 +121,6 @@ public class MusicConversionScript : MonoBehaviour
             //Debug.Log(MyClip);
             if(ScannedClip != MyClip)
             {
-                Debug.Log("uh oh");
                 MyClip = ScannedClip;
                 audioSource.clip = MyClip;
                 audioSource.Play();
