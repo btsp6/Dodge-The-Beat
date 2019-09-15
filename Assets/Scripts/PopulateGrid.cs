@@ -8,26 +8,16 @@ public class PopulateGrid : MonoBehaviour
 {
 	public GameObject prefabButton;
 
-	void Start()
-	{
+	void Start(){
 		Populate(GetPlayableFiles());
 	}
 
-	void Update()
-	{
-
-	}
-
-	string[] GetPlayableFiles(){
+	List<string> GetPlayableFiles(){
         string myPath = Application.streamingAssetsPath;
         DirectoryInfo dir = new DirectoryInfo(myPath);
         FileInfo[] info = dir.GetFiles("*.*");
 
-        string[] fileNames = new string[info.Length/2];
-        int j = 0;
-        
-        Debug.Log(info.Length/2);
-        Debug.Log(myPath);
+        List<string> fileNames = new List<string>();
 
         for (int i=0; i< info.Length; i++){
             string fileName = info[i].Name;
@@ -35,24 +25,32 @@ public class PopulateGrid : MonoBehaviour
             bool isMp3 = (maybeIsMp3.Equals(".mp3"));
             if (isMp3){
                 Debug.Log(fileName);
-                fileNames[j] = fileName;
-                j++;
+                fileNames.Add(fileName);
             }
         }
         return fileNames;
     }
 
-	void Populate(string[] fileNames)
-	{
+	void Populate(List<string> fileNames){
 		GameObject newButton; // Create GameObject instance
 
-		for (int i = 0; i < fileNames.Length; i++)
-		{
+		foreach (string currName in fileNames){
 			// Create new instances of our prefab until we've created as many as we specified
 			newButton = (GameObject)Instantiate(prefabButton, transform);
 			
-			// Randomize the color of our image
-			newButton.GetComponentInChildren<Text>().text = fileNames[i];
+			// Setting display of newButton to be the name of the mp3 file
+			newButton.GetComponentInChildren<Text>().text = currName;
+
+			// todo: make the buttons work 
+			newButton.GetComponent<Button>().onClick.AddListener( delegate {PlaceHolderScript(currName);} );
 		}
+	}
+
+	void PlaceHolderScript(string fileName){
+		string myPath = Application.streamingAssetsPath;
+		string filePath = myPath + "/" + fileName;
+		Debug.Log(filePath);
+		//do something with the filePath
+
 	}
 }
