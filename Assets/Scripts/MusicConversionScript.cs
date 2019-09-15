@@ -18,6 +18,8 @@ public class MusicConversionScript : MonoBehaviour
     public static float[] fftData = new float[N_FFT_SAMPLES];
     public static float[] reducedData = new float[N_BARS + 1]; //+1 for bass
 
+    public bool songStarted = false;
+
     private Scene CurrentScene;
     private AudioClip MyClip;
     private AudioClip ScannedClip;
@@ -60,14 +62,21 @@ public class MusicConversionScript : MonoBehaviour
             //Debug.Log(clip);
             //Debug.Log("Playing music");
 
+            songStarted = false;
             audioSource.pitch = 1;
-            audioSource.Play();
+            audioSource.Stop();
+            // Will be triggered from countdown
         }
 
         if (CurrentScene.name == "GameOver")
         {
             StartCoroutine("StopMusic");
         }
+    }
+    public void StartMusic()
+    {
+        audioSource.Play();
+        songStarted = true;
     }
 
     IEnumerator StopMusic()
@@ -150,7 +159,7 @@ public class MusicConversionScript : MonoBehaviour
                 reducedDataCount[bar_index]++;
             }
 
-            if (!audioSource.isPlaying)
+            if (!audioSource.isPlaying && songStarted)
             {
                 SceneManager.LoadScene("LevelSelect");
             }
