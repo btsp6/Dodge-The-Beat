@@ -1074,6 +1074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_HEALTH: 10
+  REGENERATE_TIMER: 1000
 --- !u!114 &1815818115
 MonoBehaviour:
   m_ObjectHideFlags: 0
