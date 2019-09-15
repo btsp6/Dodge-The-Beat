@@ -35,6 +35,8 @@ public class MusicConversionScript : MonoBehaviour
     // Called when Scene is loaded
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        StopCoroutine("StopMusic");
+
         CurrentScene = scene;
         if (CurrentScene.name == "Menu")
         {

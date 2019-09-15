@@ -27,7 +27,7 @@ public class PlayerForceField : MonoBehaviour
     {
         if (Input.GetAxis("Fire1") == 1 && !deployed){
             deployed = true;
-            gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0, 0, 0));
+            gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0, 0.5F, 0));
             StartCoroutine("CoolDown");
             StartCoroutine("StartFront");
             StartCoroutine("WaitForStartBack");
