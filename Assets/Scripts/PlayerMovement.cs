@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public float MAX_SPEED;
     public float ACCELERATION;
@@ -19,16 +19,13 @@ public class Movement : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody>();
         goal_velocity = Vector3.zero;
-
-        x_default = Input.GetAxis("Horizontal");
-        y_default = Input.GetAxis("Vertical");
     }
 
     // FixedUpdate is called before each physics frame
     void FixedUpdate()
     {
-        float x_input = Input.GetAxis("Horizontal") - x_default;
-        float y_input = Input.GetAxis("Vertical") - y_default;
+        float x_input = Input.GetAxis("Horizontal");
+        float y_input = Input.GetAxis("Vertical");
 
         float input_size = Mathf.Sqrt(x_input * x_input + y_input * y_input);
         if (input_size > 1)

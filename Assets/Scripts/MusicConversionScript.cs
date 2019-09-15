@@ -51,6 +51,7 @@ public class MusicConversionScript : MonoBehaviour
 
             reducedDataCount[bar_index]++;
         }
+
         var build = "";
         for (int i = 0; i < N_BARS; i++)
         {
