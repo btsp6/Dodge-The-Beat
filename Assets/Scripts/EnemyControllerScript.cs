@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyControllerScript : MonoBehaviour
 {
 	public GameObject enemy_prefab;
-	public int NUMBER_OF_ENEMIES;
+    public int NUMBER_OF_ENEMIES = 10;
 	public int RADIUS;
 
 	private GameObject[] enemy_list;
@@ -21,6 +21,7 @@ public class EnemyControllerScript : MonoBehaviour
                 enemy_prefab, 
                 RADIUS * new Vector3(Mathf.Cos(2*Mathf.PI*i/NUMBER_OF_ENEMIES), Mathf.Sin(2 * Mathf.PI * i / NUMBER_OF_ENEMIES), 0), 
                 Quaternion.Euler(0, 0, 360.0F*i/NUMBER_OF_ENEMIES));
+            enemy_list[i].GetComponent<Renderer>().enabled = false;
         }
     }
 

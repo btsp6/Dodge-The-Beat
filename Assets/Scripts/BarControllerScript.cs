@@ -33,7 +33,7 @@ public class BarControllerScript : MonoBehaviour
         {
             bar_list[i] = (GameObject)Instantiate(
                 bar, 
-                Quaternion.Euler(0, 0, 360F*i/NUMBER_OF_BARS) * (0.1F * Vector3.right), 
+                Quaternion.Euler(0, 0, 360F*i/NUMBER_OF_BARS) * (0.1F * Vector3.right) + Vector3.forward*10, 
                 Quaternion.Euler(0, 0, 360F*i/NUMBER_OF_BARS));
             bar_list[i].GetComponent<Transform>().localScale = new Vector3(0.1F, 1, 1);
             bar_list[i].GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
@@ -41,7 +41,7 @@ public class BarControllerScript : MonoBehaviour
 
         bar.GetComponent<Renderer>().enabled = false;
 
-        masker = (GameObject)Instantiate(masker_prefab, Vector3.back * 5, Quaternion.identity);
+        masker = (GameObject)Instantiate(masker_prefab, Vector3.forward*5, Quaternion.identity);
 
 
     }
