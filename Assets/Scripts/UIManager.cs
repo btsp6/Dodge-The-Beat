@@ -10,12 +10,12 @@ public class UIManager : MonoBehaviour
     }
 
     public void StartLevelSelectScene(){
-        Debug.Log("help");
+        Debug.Log("help1");
         SceneManager.LoadScene("LevelSelect");
     }
 
     public void StartGameScene(){
-        Debug.Log("help");
+        Debug.Log("help2");
         SceneManager.LoadScene("Game"); 
     }
     
