@@ -9,7 +9,7 @@ public class BarControllerScript : MonoBehaviour
     public GameObject bar_prefab;
     public GameObject sliced_object;
     public GameObject masker_prefab;
-    public int NUMBER_OF_BARS;
+    public const int NUMBER_OF_BARS = 10;
     public float INITIAL_RADIUS;
     public float DELTA_RADIUS;
 
@@ -49,9 +49,16 @@ public class BarControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
 
-        masker.GetComponent<Transform>().localScale = new Vector3(2*radius, 2*radius, 1);
-        SetBarHeight(0, Random.value);
+    void LateUpdate()
+    {
+        for (int i = 0; i < NUMBER_OF_BARS; i++)
+        {
+            SetBarHeight(i, MusicConversionScript.reducedData[i]*50);
+        }
+        masker.GetComponent<Transform>().localScale = new Vector3(2 * radius, 2 * radius, 1);
     }
 
     void SliceBars()
