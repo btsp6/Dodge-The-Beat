@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour
 				bullet_prefab,
 				transform
 			);
+			bullet.GetComponent<Bullet>().index = index;
 			Rigidbody rb = bullet.GetComponent<Rigidbody>();
 			rb.velocity = -transform.position;
 		}
