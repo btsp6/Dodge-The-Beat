@@ -21,6 +21,7 @@ public class Bullet : MonoBehaviour
 	private void OnTriggerEnter(Collider other) {
 		if (other.name == "Player") {
 			other.gameObject.GetComponent<PlayerHealth>().BulletHit();
+			Destroy(gameObject);
 		}
 	}
 }
