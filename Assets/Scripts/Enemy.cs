@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
             scaled_average_amplitude += MusicConversionScript.reducedData[i] / NUMBER_OF_BARS * BarControllerScript.SCALING_FACTOR;
         }
         float val = MusicConversionScript.reducedData[index]*BarControllerScript.SCALING_FACTOR;
-		if (val > Mathf.Max(THRESHOLD - 2*scaled_average_amplitude, 1) * scaled_average_amplitude + 0.05 && timer == 0) {
+		if (val > Mathf.Max(THRESHOLD - 2*scaled_average_amplitude, 1) * scaled_average_amplitude + 0.01 && timer == 0) {
 			timer = COOLDOWN;
 			float sector = 2*Mathf.PI/NUMBER_OF_BARS;
 			float angle = index*sector + Random.Range(-sector/2, sector/2);
