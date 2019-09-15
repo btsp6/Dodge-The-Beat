@@ -515,8 +515,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy_prefab: {fileID: 4404001257334706380, guid: acaf2329938d7244b96c4ae884883e1f,
     type: 3}
-  NUMBER_OF_ENEMIES: 1
-  RADIUS: 4
 --- !u!1 &1185520088
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ForceFieldFront: {fileID: 1185520088}
   ForceFieldBack: {fileID: 2070203494}
-  MAX_SIZE: 4
+  MAX_SIZE: 8
   COOLDOWN_TIME: 2
   DELAY_TIME: 0.1
   FORCE_FIELD_SPEED: 20
