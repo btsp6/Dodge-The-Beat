@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 	public GameObject bullet_prefab;
+	public const int NUMBER_OF_BARS = BarControllerScript.NUMBER_OF_BARS;
 	private int timer;
 
     // Start is called before the first frame update
@@ -27,4 +28,8 @@ public class Enemy : MonoBehaviour
 			//bullet.velocity = Vector3(1, 0, 0);
 		}
     }
+
+	void LateUpdate() {
+		
+	}
 }

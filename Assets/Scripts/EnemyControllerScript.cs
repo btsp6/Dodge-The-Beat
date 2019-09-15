@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyControllerScript : MonoBehaviour
 {
 	public GameObject enemy_prefab;
-    public int NUMBER_OF_ENEMIES = 10;
+    public const int NUMBER_OF_ENEMIES = BarControllerScript.NUMBER_OF_BARS;
 	public int RADIUS;
 
 	private GameObject[] enemy_list;
@@ -17,6 +17,7 @@ public class EnemyControllerScript : MonoBehaviour
 
         for(int i = 0; i < NUMBER_OF_ENEMIES; i++)
         {
+			Debug.Log(i);
             enemy_list[i] = Instantiate(
                 enemy_prefab, 
                 RADIUS * new Vector3(Mathf.Cos(2*Mathf.PI*i/NUMBER_OF_ENEMIES), Mathf.Sin(2 * Mathf.PI * i / NUMBER_OF_ENEMIES), 0), 
