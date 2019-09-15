@@ -12,14 +12,14 @@ public class Healthbar : MonoBehaviour
     void Start()
     {
  	    current = NUM_LIVES;   
-		transform.localScale = new Vector3(LENGTH*current/NUM_LIVES, 0.5f, 1);
+		transform.localScale = new Vector3(LENGTH*current/NUM_LIVES, LENGTH/10, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
 		current = PlayerHealth.health;
-		transform.localScale = new Vector3(LENGTH*current/NUM_LIVES, 0.5f, 1);
-		transform.position = new Vector3(4.5f + LENGTH*current/NUM_LIVES/2, 4, 0);
+		transform.localScale = new Vector3(LENGTH*current/NUM_LIVES, LENGTH/10, 1);
+		transform.position = new Vector3(5.5f - LENGTH/2 + LENGTH*current/NUM_LIVES/2, 4.25f, 0);
     }
 }
