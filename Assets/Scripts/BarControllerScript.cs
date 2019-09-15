@@ -80,7 +80,7 @@ public class BarControllerScript : MonoBehaviour
         for (int i = 0; i < NUMBER_OF_BARS; i++)
         {
             float curr_data = MusicConversionScript.reducedData[i];
-            SetBarHeight(i, curr_data*SCALING_FACTOR*2/(1+Mathf.Exp(-(curr_data - average_amplitude))));
+            SetBarHeight(i, curr_data*SCALING_FACTOR*2/(1+Mathf.Exp(-5*(curr_data - average_amplitude))));
         }
         masker.GetComponent<Transform>().localScale = new Vector3(2 * radius, 2 * radius, 1);
         for(int i = 0; i < NUMBER_OF_WALLS; i++)
