@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
 	public int MAX_HEALTH;
-	private int health;
+	public static int health;
 
     void Start() {
 		health = MAX_HEALTH;
@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
 	public void BulletHit() {
-		health -= 1;	
+		health -= 1;
 		Debug.Log(health);
 		if (health <= 0) {
 			Dead();
