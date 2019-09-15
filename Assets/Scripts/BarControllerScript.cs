@@ -71,7 +71,7 @@ public class BarControllerScript : MonoBehaviour
     {
         // bar_list[index].GetComponent<Transform>().position = Quaternion.Euler(0, 0, 360F * index / NUMBER_OF_BARS) * ((radius + size / 2) * Vector3.right);
         bar_list[index].GetComponent<Transform>().localScale = new Vector3((1 + DELTA_RADIUS*size) * 2*radius, (1 + DELTA_RADIUS * size) * 2*radius, 1);
-        bar_list[index].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(1, size, size, 1));
+        bar_list[index].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(1, size*size, size*size, 1));
     }
 
 }
