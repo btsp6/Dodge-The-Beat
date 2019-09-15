@@ -22,6 +22,7 @@ public class EnemyControllerScript : MonoBehaviour
                 enemy_prefab, 
                 RADIUS * new Vector3(Mathf.Cos(2*Mathf.PI*i/NUMBER_OF_ENEMIES), Mathf.Sin(2 * Mathf.PI * i / NUMBER_OF_ENEMIES), 0), 
                 Quaternion.Euler(0, 0, 360.0F*i/NUMBER_OF_ENEMIES));
+			enemy_list[i].GetComponent<Enemy>().index = i;
             enemy_list[i].GetComponent<Renderer>().enabled = false;
         }
     }
