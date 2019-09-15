@@ -30,6 +30,7 @@ public class MusicConversionScript : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         audioSource = GetComponent<AudioSource>();
+        ToneIndices.Initialize();
     }
 
     // Called when Scene is loaded
@@ -61,7 +62,6 @@ public class MusicConversionScript : MonoBehaviour
 
             audioSource.pitch = 1;
             audioSource.Play();
-            ToneIndices.Initialize();
         }
 
         if (CurrentScene.name == "GameOver")
