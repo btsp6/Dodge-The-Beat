@@ -7,16 +7,16 @@ using System.IO;
 public class UIManager : MonoBehaviour
 {
     void Start(){
-        Debug.Log("help"); 
+        // Debug.Log("help"); 
     }
 
     public void StartLevelSelectScene(){
-        Debug.Log("help1");
+        // Debug.Log("help1");
         SceneManager.LoadScene("LevelSelect");
     }
 
     public void StartGameScene(){
-        Debug.Log("help2");
+        // Debug.Log("help2");
         SceneManager.LoadScene("Game"); 
     }
 
@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
                 j++;
             }            
         }
+        
         Debug.Log(fileNames.ToString());
         // fileNames.ToList().ForEach(name => Debug.Log(name.ToString()));
     }
