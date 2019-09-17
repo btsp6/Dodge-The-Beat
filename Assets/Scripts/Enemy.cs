@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
 	public GameObject bullet_prefab;
 	public const int NUMBER_OF_BARS = BarControllerScript.NUMBER_OF_BARS; 
 	public const int RADIUS = EnemyControllerScript.RADIUS;
-	public float THRESHOLD;
 	public int COOLDOWN, index;
 	private int timer;
 
@@ -24,13 +23,13 @@ public class Enemy : MonoBehaviour
 
 	void LateUpdate() {
 		if (timer > 0) timer--;
-        float scaled_average_amplitude = 0;
+        float average_amplitude = 0;
         for (int i = 0; i < NUMBER_OF_BARS; i++)
         {
-            scaled_average_amplitude += MusicConversionScript.reducedData[i] / NUMBER_OF_BARS * BarControllerScript.SCALING_FACTOR;
+            average_amplitude += MusicConversionScript.reducedData[i] / NUMBER_OF_BARS;
         }
-        float val = MusicConversionScript.reducedData[index]*BarControllerScript.SCALING_FACTOR;
-		if (val > Mathf.Max(THRESHOLD - 2.2f*scaled_average_amplitude, 1) * scaled_average_amplitude + 0.01 && timer == 0) {
+        float val = MusicConversionScript.reducedData[index]*MusicConversionScript.SCALING_FACTOR;
+		if (val > Mathf.Max(1.5f - 1f*average_amplitude, 1) * average_amplitude + 0.01 && timer == 0) {
 			timer = COOLDOWN;
 			float sector = 2*Mathf.PI/NUMBER_OF_BARS;
 			float angle = index*sector + Random.Range(-sector/2, sector/2);

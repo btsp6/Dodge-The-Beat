@@ -14,8 +14,6 @@ public class BarControllerScript : MonoBehaviour
     public const int NUMBER_OF_BARS = 12;
     public const int NUMBER_OF_WALLS = 64;
 
-    public const float SCALING_FACTOR = 1;
-
     public float INITIAL_RADIUS;
     public float DELTA_RADIUS;
 
@@ -72,15 +70,10 @@ public class BarControllerScript : MonoBehaviour
 
     void LateUpdate()
     {
-        float average_amplitude = 0;
-        for(int i = 0; i < NUMBER_OF_BARS; i++)
-        {
-            average_amplitude += MusicConversionScript.reducedData[i] / NUMBER_OF_BARS;
-        }
+        
         for (int i = 0; i < NUMBER_OF_BARS; i++)
         {
-            float curr_data = MusicConversionScript.reducedData[i];
-            SetBarHeight(i, curr_data*SCALING_FACTOR*2/(1+Mathf.Exp(-5*(curr_data - average_amplitude))));
+            SetBarHeight(i, MusicConversionScript.reducedData[i]);
         }
         masker.GetComponent<Transform>().localScale = new Vector3(2 * radius, 2 * radius, 1);
         for(int i = 0; i < NUMBER_OF_WALLS; i++)

@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songStarted: 0
+  SCALING_FACTOR: 500
 --- !u!4 &171956672
 Transform:
   m_ObjectHideFlags: 0

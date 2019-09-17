@@ -17,6 +17,7 @@ public class MusicConversionScript : MonoBehaviour
 
     public static float[] fftData = new float[N_FFT_SAMPLES];
     public static float[] reducedData = new float[N_BARS + 1]; //+1 for bass
+    public static float SCALING_FACTOR = 1;
 
     public bool songStarted = false;
 
@@ -159,6 +160,8 @@ public class MusicConversionScript : MonoBehaviour
                 reducedDataCount[bar_index]++;
             }
 
+            ModifyData();
+
             if (!audioSource.isPlaying && songStarted)
             {
                 SceneManager.LoadScene("LevelSelect");
@@ -173,6 +176,38 @@ public class MusicConversionScript : MonoBehaviour
             Debug.Log(build);
             */
         }
+    }
+
+    void ModifyData()
+    {
+        float average_amplitude = 0;
+        for (int i = 0; i < N_BARS; i++)
+        {
+            average_amplitude += reducedData[i] / N_BARS;
+        }
+
+        Debug.Log("Before");
+        for (int i = 0; i < N_BARS; i++)
+        {
+            Debug.Log(reducedData[i]);
+
+        }
+
+        for (int i = 0; i < N_BARS; i++)
+        {
+            Debug.Log(SCALING_FACTOR);
+            float curr_data = reducedData[i];
+            reducedData[i] = curr_data * SCALING_FACTOR * 2 / (1 + Mathf.Exp(-5 * (curr_data - average_amplitude)));
+        }
+
+
+        Debug.Log("After");
+        for (int i = 0; i < N_BARS; i++)
+        {
+            Debug.Log(reducedData[i]);
+
+        }
+
     }
 }
 
@@ -232,7 +267,8 @@ class ToneIndices
             build += j*SAMPLE_WIDTH + ": " + indices[j] + "\n";
         }*/
 
-        Debug.Log(build);
-        Debug.Log(FREQUENCY_RANGE + ": " + indices[MusicConversionScript.N_FFT_SAMPLES - 1] + "\n");
+        //Debug.Log(build);
+        //Debug.Log(FREQUENCY_RANGE + ": " + indices[MusicConversionScript.N_FFT_SAMPLES - 1] + "\n");
+        
     }
 }
