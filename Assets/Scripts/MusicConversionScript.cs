@@ -26,6 +26,23 @@ public class MusicConversionScript : MonoBehaviour
     private AudioClip ScannedClip;
     private GameObject CurrentButton;
 
+    // Used to make sure only one music player exists
+    private void Awake()
+    {
+        int numMusicPlayers = GameObject.FindGameObjectsWithTag("MusicPlayer").Length;
+        if (numMusicPlayers != 1)
+        {
+            Destroy(gameObject);
+        }
+        // if more then one music player is in the scene
+        //destroy ourselves
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
+    }
+
     // Used to add OnSceneLoaded to scene manager
     void OnEnable()
     {
