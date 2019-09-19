@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 5547518}
   - component: {fileID: 5547522}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353,7 +353,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   songStarted: 0
-  SCALING_FACTOR: 500
 --- !u!4 &171956672
 Transform:
   m_ObjectHideFlags: 0
@@ -1182,7 +1181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_HEALTH: 10
-  REGENERATE_TIMER: 1000
+  REGENERATE_TIMER: 10
 --- !u!114 &1815818115
 MonoBehaviour:
   m_ObjectHideFlags: 0

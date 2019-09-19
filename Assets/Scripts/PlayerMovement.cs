@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float MAX_SPEED;
-    public float ACCELERATION;
 
     private Rigidbody rb;
 

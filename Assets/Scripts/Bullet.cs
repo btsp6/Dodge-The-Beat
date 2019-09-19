@@ -6,7 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 	public int index;
-	private int timer;
+	private float timer;
 
     // Start is called before the first frame update
     void Start() {
@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
     }
 
 	void FixedUpdate() {
-		timer++;
+		timer += Time.deltaTime;
 	}
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
 			Destroy(gameObject);
 		}
 		// timer > 10 is extremely jank
-		else if (timer > 10 && other.name != "Bullet(Clone)") {
+		else if (timer > 0.2 && other.name != "Bullet(Clone)") {
 			Destroy(gameObject);
 		}
 	}

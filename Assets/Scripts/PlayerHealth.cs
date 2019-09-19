@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
 	public int MAX_HEALTH, REGENERATE_TIMER;
 	public static int health;
-	private int timer;
+	private float timer;
 
     void Start() {
 		health = MAX_HEALTH;
@@ -16,8 +16,12 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        timer++;
-		if (timer % REGENERATE_TIMER == 0) Regenerate();
+        timer += Time.deltaTime;
+        if (timer > REGENERATE_TIMER)
+        {
+            timer = 0;
+            Regenerate();
+        }
     }
 
 	public void BulletHit() {

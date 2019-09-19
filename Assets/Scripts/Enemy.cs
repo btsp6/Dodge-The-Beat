@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
 	public const int RADIUS = EnemyControllerScript.RADIUS;
 	public int index;
     public float COOLDOWN;
+    public float VELOCITY;
 	private float timer;
 
     // Start is called before the first frame update
@@ -41,7 +42,7 @@ public class Enemy : MonoBehaviour
 			);
 			bullet.GetComponent<Bullet>().index = index;
 			Rigidbody rb = bullet.GetComponent<Rigidbody>();
-			rb.velocity = -transform.position;
+			rb.velocity = -VELOCITY * transform.position;
 		}
 	}
 }
