@@ -93,6 +93,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet_prefab: {fileID: 1653613802874464891, guid: 6e6d9eb031a516c47baf83bfa492816a,
     type: 3}
-  THRESHOLD: 2.4
-  COOLDOWN: 50
   index: 0
+  COOLDOWN: 1

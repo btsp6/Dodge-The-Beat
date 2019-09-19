@@ -7,13 +7,14 @@ public class Enemy : MonoBehaviour
 	public GameObject bullet_prefab;
 	public const int NUMBER_OF_BARS = BarControllerScript.NUMBER_OF_BARS; 
 	public const int RADIUS = EnemyControllerScript.RADIUS;
-	public int COOLDOWN, index;
-	private int timer;
+	public int index;
+    public float COOLDOWN;
+	private float timer;
 
     // Start is called before the first frame update
     void Start()
     {
-		timer = 10; // buffer to prevent start of game bullet spawning 
+		timer = 1; // buffer to prevent start of game bullet spawning 
     }
 
     // Update is called once per frame
@@ -22,14 +23,14 @@ public class Enemy : MonoBehaviour
     }
 
 	void LateUpdate() {
-		if (timer > 0) timer--;
+		if (timer > 0) timer -= Time.deltaTime;
         float average_amplitude = 0;
         for (int i = 0; i < NUMBER_OF_BARS; i++)
         {
             average_amplitude += MusicConversionScript.reducedData[i] / NUMBER_OF_BARS;
         }
         float val = MusicConversionScript.reducedData[index]*MusicConversionScript.SCALING_FACTOR;
-		if (val > Mathf.Max(1.5f - 1f*average_amplitude, 1) * average_amplitude + 0.01 && timer == 0) {
+		if (val > Mathf.Max(1.5f - 1f*average_amplitude, 1) * average_amplitude + 0.01 && timer <= 0) {
 			timer = COOLDOWN;
 			float sector = 2*Mathf.PI/NUMBER_OF_BARS;
 			float angle = index*sector + Random.Range(-sector/2, sector/2);
