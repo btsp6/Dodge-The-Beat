@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		timer = 0;
+		timer = 10; // buffer to prevent start of game bullet spawning 
     }
 
     // Update is called once per frame
